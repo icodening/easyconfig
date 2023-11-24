@@ -1,2 +1,35 @@
 # easyconfig
-Simple and easy to use Spring Boot application configuration editor
+简单易用的Spring Boot应用程序配置编辑器
+
+# 项目背景
+在部署Spring Boot应用程序时，我们通常需要在application.properties文件上编辑配置或新增配置，但是这种方式在配置项较长、且`无法复制`的情况下容易出错。为了解决这个问题而开发了这个简单易用的Spring Boot应用程序配置编辑器。
+
+# 功能介绍
+1. 配置补全提示，避免出错
+2. 配置元数据提示，了解配置含义及默认值
+3. 支持指定配置元数据目录以便加载更丰富的配置提示信息
+
+# 截图示例
+### 1.配置补全提示  
+![img.png](docs/completer.png)
+### 2. 配置描述  
+![img.png](docs/desc.png)
+### 3. 加载自定义的元数据目录  
+![img.png](docs/loadlib.png)
+
+# 构建本机native
+> 1. 安装JDK 21 (必须21，否则无法构建)
+> 2. 安装Maven
+> 3. 执行`mvn clean package -Pnative`构建native制品包
+
+# 构建跨平台的native
+原理：利用不同平台的graalvm镜像构建native制品包
+> 1. 安装Docker(必须支持跨平台)
+> 2. 执行`mvn clean package -Plinux -Darch=aarch64`  (linux arm64 版本)
+> 3. 执行`mvn clean package -Plinux -Darch=amd64`    (linux x86_64 版本)
+
+
+# 仅构建可执行jar
+> 1. 安装JDK 21 (必须21，否则无法构建)
+> 2. 安装Maven
+> 3. 执行`mvn clean package -Pshade` 仅构建可执行jar
