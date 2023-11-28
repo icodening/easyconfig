@@ -9,6 +9,64 @@
 2. 配置元数据提示，了解配置含义及默认值
 3. 支持指定配置元数据目录以便加载更丰富的配置提示信息
 
+# 命令介绍
+### 打开配置文件
+```` Bash
+ec config/application.properties
+````
+### 编辑配置项
+```` Bash
+# 设置配置项 'server.port' 的值为 8080, 如果配置项不存在则新增
+set server.port 8080
+````
+
+### 查看配置值
+```` Bash
+# 查看配置项 'server.port' 的值
+get server.port 
+````
+
+### 查看配置描述
+```` Bash
+# 查看配置项 'server.port' 的描述信息
+desc server.port
+````
+
+### 移除配置项
+```` Bash
+# 移除配置项 'server.port'
+rm server.port
+````
+
+### 保存配置
+```` Bash
+save
+````
+
+### 重置配置
+```` Bash
+# 将配置项恢复为第一次加载时
+reset
+````
+
+### 加载配置元数据
+```` Bash
+# 加载配置元数据目录lib
+meta lib
+````
+
+### 退出
+```` Bash
+exit
+````
+
+### 查看错误信息
+```` Bash
+# 查看错误堆栈信息，通常只在调试下使用
+stacktrace
+````
+
+
 # 截图示例
 ### 1.配置补全提示  
 ![img.png](docs/completer.png)
