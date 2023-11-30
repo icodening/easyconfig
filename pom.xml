@@ -45,6 +45,13 @@
     </dependencies>
     <build>
         <finalName>ec</finalName>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.7.1</version>
+            </extension>
+        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -52,7 +59,7 @@
                     <artifactId>native-maven-plugin</artifactId>
                     <version>0.9.28</version>
                     <configuration>
-                        <imageName>${build.finalName}</imageName>
+                        <imageName>${build.finalName}-${os.detected.classifier}</imageName>
                         <quickBuild>true</quickBuild>
                         <fallback>false</fallback>
                         <buildArgs>
