@@ -5,7 +5,7 @@ import com.icodening.easyconfig.command.CommandContext;
 import com.icodening.easyconfig.command.CommandRegistryCompleter;
 import com.icodening.easyconfig.command.DefaultCommandRegistry;
 import com.icodening.easyconfig.command.DescribeCommand;
-import com.icodening.easyconfig.command.ExitCommand;
+import com.icodening.easyconfig.command.EmptyArgumentsCommand;
 import com.icodening.easyconfig.command.GetValueCommand;
 import com.icodening.easyconfig.command.MetadataCommand;
 import com.icodening.easyconfig.command.RemoveCommand;
@@ -88,10 +88,13 @@ public class EasyConfigMain {
                 words.remove(0);
                 context.setCommandName(commandName);
                 AttributedString renderString = command.handle(context, words);
-                if (renderString == null) {
-                    continue;
+                if (renderString != null) {
+                    renderString.println(terminal);
+                    terminal.flush();
                 }
-                renderString.println(terminal);
+                if (command instanceof ExitCommand) {
+                    return;
+                }
             } catch (UserInterruptException ignored) {
             } catch (Throwable throwable) {
                 AttributedString errorString = new AttributedString("'" + commandName + "' execute fail. You can use 'stacktrace' to print details. ", new AttributedStyle().foreground(AttributedStyle.RED));
@@ -138,6 +141,20 @@ public class EasyConfigMain {
         } catch (UnsupportedOperationException e) {
             System.err.println(e.getMessage());
             System.exit(1);
+        }
+    }
+
+    private static class ExitCommand implements EmptyArgumentsCommand {
+
+        @Override
+        public String getName() {
+            return "exit";
+        }
+
+        @Override
+        public AttributedString handle(CommandContext context, List<String> args) {
+            //do nothing
+            return new AttributedString("Bye!", new AttributedStyle().foreground(AttributedStyle.GREEN));
         }
     }
 }
