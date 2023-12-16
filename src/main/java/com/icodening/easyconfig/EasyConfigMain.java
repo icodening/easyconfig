@@ -57,7 +57,6 @@ public class EasyConfigMain {
         for (String path : LIB_PATH) {
             loadJarsByDirectory(path);
         }
-        loadJarsByDirectory(Locations.self());
         DefaultCommandRegistry commandRegistry = buildDefaultCommandRegistry();
         CommandRegistryCompleter commandRegistryCompleter = new CommandRegistryCompleter();
         commandRegistryCompleter.setCommandRegistry(commandRegistry);
